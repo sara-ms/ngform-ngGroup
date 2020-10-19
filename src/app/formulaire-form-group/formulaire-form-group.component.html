@@ -1,0 +1,61 @@
+<ul>
+    <li *ngFor="let post of posts">
+     {{post.title}}
+    </li>
+  </ul>
+
+<div class="col-sm-8 col-sm-offset-2">
+    <form [formGroup]="userForm">
+        <div class="form-group">
+            <label for="firstName">Name</label>
+            <input type="text" id="firstName" class="form-control" required minlength="4" formControlName="firstName"
+                [ngClass]="{ 'is-invalid': submitted && userForm.controls.firstName.errors}" />
+
+            <div *ngIf="submitted && userForm.controls.firstName.errors" class="text-danger">
+                <div *ngIf="userForm.controls.firstName.errors.minlength">Minmum length is 4</div>
+
+                <div *ngIf="userForm.controls.firstName.errors.required">First Name is required</div>
+            </div>
+
+
+        </div>
+        <div class="form-group">
+            <label for="email">Adresse e-mail</label>
+            <input type="text" id="email" class="form-control" formControlName="email"
+                [ngClass]="{ 'is-invalid': submitted && userForm.controls.email.errors }" />
+
+            <div *ngIf="submitted && userForm.controls.email.errors" class="text-danger">
+                <div *ngIf="userForm.controls.email.errors.required">Email is required</div>
+                <div *ngIf="userForm.controls.email.errors.email">Email must be a valid email address</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="numero de phone">Numero de phone</label>
+            <input type="number" id="numero" class="form-control" required minlength="8" formControlName="numerodephone"
+                [ngClass]="{ 'is-invalid': submitted && userForm.controls.numerodephone.errors }" />
+
+            <div *ngIf="submitted && userForm.controls.numerodephone.errors" class="text-danger">
+                <div *ngIf="userForm.controls.numerodephone.errors.minlength">Minmum length is 8</div>
+                <div *ngIf="userForm.controls.numerodephone.errors.required">phone is required </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="psw " class="form-control" formControlName="password"
+                [ngClass]="{ 'is-invalid': submitted && userForm.controls.password.errors}" />
+
+            <div *ngIf="submitted &amp;&amp; userForm.controls.password.errors" class="text-danger">
+                <div *ngIf="userForm.controls.password.errors.required">Password is required</div>
+                <div *ngIf="userForm.controls.password.errors.minlength">Password must be at least 6 characters
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+        </div>
+        
+    </form>
+
+    <button (click)='onSubmitForm()' type="button" class="btn btn-danger">Submit</button>
+</div>
